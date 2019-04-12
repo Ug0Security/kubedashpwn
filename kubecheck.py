@@ -27,11 +27,7 @@ url_ltuple = list()
 with open (sitelist) as sl:
     for line in sl:
         mainsite = line.rstrip()
-        if ":443" or ":8443" in mainsite:
-            url_ltuple.append((0,"https://"+ mainsite + "/api/v1/settings/global"))
-        else:
-            url_ltuple.append((0,"http://"+ mainsite + "/api/v1/settings/global"))
-        
+        url_ltuple.append((0, mainsite + "/api/v1/rbac/status"))
         #url_ltuple.append((0,"http://" + mainsite + "/nginx_status"))
         
 
@@ -82,9 +78,9 @@ async def gethead(site, session, start_time, retesting=False):
             html = await response.text()
             
             
-            if "clusterName" in html:
-                print (site.url[:-22] +" == (Kubernet Dashboard Pwnable ?)")
-                print(site.url[:-22] +" == (Kubernet Dashboard Pwnable ?)", file=open("result.txt", "a"))
+            if "enabled" in html:
+                print (site.url[:-18] +" == (Kubernet Dashboard Pwnable ?)")
+                print(site.url[:-18] +" == (Kubernet Dashboard Pwnable ?)", file=open("result.txt", "a"))
             else:
                 pass
                  
@@ -137,5 +133,6 @@ async def run(sites, retesting=False):
 loop = asyncio.get_event_loop()
 future = asyncio.ensure_future(run(sites=sites))
 loop.run_until_complete(future)
+
 
 
