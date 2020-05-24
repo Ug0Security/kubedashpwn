@@ -1,6 +1,10 @@
 kubernetes exploit via dashboard
 image : rastasheep/ubuntu-sshd
+pti docker avec ssh root:root exposé sur le 22, faut router via l'interface (chiant des fois ça marche pas psk config réseau pétée - pas routable, accessible ect..)
 
+pour pwn le host via docker faut modif la config du service:
 "volumes": [ { "name": "test", "hostPath": { "path": "/", "type": "" } } ],
 
 "volumeMounts": [ { "name": "test", "mountPath": "/mnt" } ],
+
+target shodan/zoomeye: "kubernetes dashboard"
